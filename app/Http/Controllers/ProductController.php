@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ProductCollection;
+use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -27,8 +28,10 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $product = Product::create($request->only([
-            'title', 'description', 'date', 'price', 'size', 'genre'
+            'title', 'description', 'date', 'price', 'size', 'genre', 'image_id'
         ]));
+        
+        return new ProductResource($product);
     }
 
     /**
@@ -39,7 +42,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return new ProductResource($product);
     }
 
     /**
