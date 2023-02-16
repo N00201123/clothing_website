@@ -22,8 +22,8 @@ class ProductFactory extends Factory
             'date'=> $this->faker->date,
             'price' => $this->faker->numberBetween(0, 1000),
             'size' => $this->faker->text(5),
-            'genre' => $this->faker->word,
-            'image_id' => $this->faker->word,
+            'type' => $this->faker->word,
+            'image' => $this->faker->word,
         ];
     }
 }

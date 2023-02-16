@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('date');
             $table->float('price');
             $table->text('size');
-            $table->string('genre');
-            $table->string('image_id');
+            $table->string('type');
+            $table->string('image');
             $table->timestamps();
         });
     }
