@@ -12,6 +12,24 @@ class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * 
+    * @OA\Get(
+    *     path="/api/customer",
+    *     description="Displays all the customers",
+    *     tags={"Customer"},
+     *      @OA\Response(
+        *          response=200,
+        *          description="Successful operation, Returns a list of Books in JSON format"
+        *       ),
+        *      @OA\Response(
+        *          response=401,
+        *          description="Unauthenticated",
+        *      ),
+        *      @OA\Response(
+        *          response=403,
+        *          description="Forbidden"
+        *      )
+ * )
      *
      * @return \Illuminate\Http\Response
      */
