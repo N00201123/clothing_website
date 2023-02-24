@@ -19,7 +19,7 @@ class ProductController extends Controller
     *     tags={"Product"},
      *      @OA\Response(
         *          response=200,
-        *          description="Successful operation, Returns a list of Books in JSON format"
+        *          description="Successful operation, Returns a list of Products in JSON format"
         *       ),
         *      @OA\Response(
         *          response=401,

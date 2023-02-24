@@ -2,24 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\CustomerCollection;
-use App\Http\Resources\CustomerResource;
-use App\Models\Customer;
+use App\Http\Resources\OrderCollection;
+use App\Http\Resources\OrderResource;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class CustomerController extends Controller
+class OrderController extends Controller
 {
-    /**
+     /**
      * Display a listing of the resource.
      * 
     * @OA\Get(
-    *     path="/api/customer",
-    *     description="Displays all the customers",
-    *     tags={"Customer"},
+    *     path="/api/order",
+    *     description="Displays all the orders",
+    *     tags={"Order"},
      *      @OA\Response(
         *          response=200,
-        *          description="Successful operation, Returns a list of Customers in JSON format"
+        *          description="Successful operation, Returns a list of Orders in JSON format"
         *       ),
         *      @OA\Response(
         *          response=401,
@@ -35,7 +35,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return new CustomerCollection(Customer::all());
+        return new OrderCollection(Order::all());
     }
 
     /**
@@ -46,49 +46,49 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-         $customer = Customer::create($request->only([
-            'first_name', 'last_name', 'email', 'phone', 'address'
-         ]));
+        $order = Order::create($request->only([
+            'date', 'shipping_price'
+        ]));
 
-         return new CustomerResource($customer);
+        return new OrderResource($order);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Customer  $customer
+     * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(Customer $customer)
+    public function show(Order $order)
     {
-        return new CustomerResource($customer);
+        return new OrderResource($order);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Customer  $customer
+     * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Customer $customer)
+    public function update(Request $request, Order $order)
     {
-        $customer ->update($request->only([
-            'first_name', 'last_name', 'email', 'phone', 'address'
+        $order->update($request->only([
+            'date', 'shipping_price'
         ]));
-        
-        return new CustomerResource($customer);
+
+        return new OrderResource($order);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Customer  $customer
+     * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Customer $customer)
+    public function destroy(Order $order)
     {
-        $customer->delete();
+        $order->delete();
         return response()->json(null, Response::HTTP_NO_CONTENT);
     }
 }

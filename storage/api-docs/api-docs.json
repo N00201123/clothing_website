@@ -23,7 +23,7 @@
                 "operationId": "327644f4d836240fa297b2822ab6ca92",
                 "responses": {
                     "200": {
-                        "description": "Successful operation, Returns a list of Books in JSON format"
+                        "description": "Successful operation, Returns a list of Categories in JSON format"
                     },
                     "401": {
                         "description": "Unauthenticated"
@@ -54,7 +54,28 @@
                 "operationId": "36d5a836e102529237aae81bf088183a",
                 "responses": {
                     "200": {
-                        "description": "Successful operation, Returns a list of Books in JSON format"
+                        "description": "Successful operation, Returns a list of Customers in JSON format"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/order": {
+            "get": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Display a listing of the resource.",
+                "description": "Displays all the orders",
+                "operationId": "2e0a787dfc4b1239185f92b95e14cbb9",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation, Returns a list of Orders in JSON format"
                     },
                     "401": {
                         "description": "Unauthenticated"
@@ -75,7 +96,7 @@
                 "operationId": "5cc57bec35d0f2045983cc8dcd00eccd",
                 "responses": {
                     "200": {
-                        "description": "Successful operation, Returns a list of Books in JSON format"
+                        "description": "Successful operation, Returns a list of Products in JSON format"
                     },
                     "401": {
                         "description": "Unauthenticated"

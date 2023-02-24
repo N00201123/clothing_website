@@ -19,7 +19,7 @@ class CategoryController extends Controller
     *     tags={"Category"},
      *      @OA\Response(
         *          response=200,
-        *          description="Successful operation, Returns a list of Books in JSON format"
+        *          description="Successful operation, Returns a list of Categories in JSON format"
         *       ),
         *      @OA\Response(
         *          response=401,
