@@ -55,7 +55,31 @@ class CategoryController extends Controller
 
     /**
      * Display the specified resource.
-     *
+     * @OA\Get(
+    *     path="/api/category/{id}",
+    *     description="Gets a category by ID",
+    *     tags={"Category"},
+    *          @OA\Parameter(
+        *          name="id",
+        *          description="Category id",
+        *          required=true,
+        *          in="path",
+        *          @OA\Schema(
+        *              type="integer")
+     *          ),
+        *      @OA\Response(
+        *          response=200,
+        *          description="Successful operation"
+        *       ),
+        *      @OA\Response(
+        *          response=401,
+        *          description="Unauthenticated",
+        *      ),
+        *      @OA\Response(
+        *          response=403,
+        *          description="Forbidden"
+        *      )
+ * )
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */

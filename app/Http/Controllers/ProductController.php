@@ -41,6 +41,34 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
+     * @OA\Post(
+     *      path="/api/product",
+     *      operationId="storeAgain",
+     *      tags={"Product"},
+     *      summary="Create a new Product",
+     *      description="Stores the product in the DB",
+     *      @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *            required={"title", "description", "date", "price", "size", "type", "image"},
+     *            @OA\Property(property="title", type="string", format="sting", example="T-Shirt"),
+     *            @OA\Property(property="description", type="string", format="string", example="This is a T-Shirt"),
+     *            @OA\Property(property="date", type="date", format="date", example="2023-01-01"),
+     *            @OA\Property(property="price", type="float", format="float", example="49.49"),
+     *            @OA\Property(property="size", type="string", format="string", example="Large"),
+     *            @OA\Property(property="type", type="string", format="string", example="men"),
+     *             @OA\Property(property="image", type="string", format="string", example="T-Shirt")
+     *          )
+     *      ),
+     *     @OA\Response(
+     *          response=200, description="Success",
+     *          @OA\JsonContent(
+     *             @OA\Property(property="status", type="integer", example=""),
+     *             @OA\Property(property="data",type="object")
+     *          )
+     *     )
+     * )
+     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -55,7 +83,31 @@ class ProductController extends Controller
 
     /**
      * Display the specified resource.
-     *
+     * @OA\Get(
+    *     path="/api/product/{id}",
+    *     description="Gets a product by ID",
+    *     tags={"Product"},
+    *          @OA\Parameter(
+        *          name="id",
+        *          description="Product id",
+        *          required=true,
+        *          in="path",
+        *          @OA\Schema(
+        *              type="integer")
+     *          ),
+        *      @OA\Response(
+        *          response=200,
+        *          description="Successful operation"
+        *       ),
+        *      @OA\Response(
+        *          response=401,
+        *          description="Unauthenticated",
+        *      ),
+        *      @OA\Response(
+        *          response=403,
+        *          description="Forbidden"
+        *      )
+ * )
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
@@ -81,6 +133,27 @@ class ProductController extends Controller
     }
 
     /**
+     *
+     *
+     * @OA\Delete(
+     *    path="/api/product/{id}",
+     *    operationId="destroy",
+     *    tags={"Product"},
+     *    summary="Delete a Product",
+     *    description="Delete Product",
+     *    @OA\Parameter(name="id", in="path", description="Id of a Product", required=true,
+     *        @OA\Schema(type="integer")
+     *    ),
+     *    @OA\Response(
+     *         response=Response::HTTP_NO_CONTENT,
+     *         description="Success",
+     *         @OA\JsonContent(
+     *         @OA\Property(property="status_code", type="integer", example="204"),
+     *         @OA\Property(property="data",type="object")
+     *          ),
+     *       )
+     *      )
+     *  )
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Product  $product

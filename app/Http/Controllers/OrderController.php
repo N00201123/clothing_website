@@ -35,27 +35,82 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return new OrderCollection(Order::all());
+        //return new OrderCollection(Order::all());
+        return new OrderCollection(Order::with('customer')->get());
     }
 
     /**
      * Store a newly created resource in storage.
      *
+     * @OA\Post(
+     *      path="/api/order",
+     *      operationId="store",
+     *      tags={"Order"},
+     *      summary="Create a new Order",
+     *      description="Stores the order in the DB",
+     *      @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *            required={"date", "shipping_price"},
+     *            @OA\Property(property="date", type="date", format="date", example="2023-01-01"),
+     *             @OA\Property(property="shipping_price", type="float", format="float", example="0.99")
+     *          )
+     *      ),
+     *     @OA\Response(
+     *          response=200, description="Success",
+     *          @OA\JsonContent(
+     *             @OA\Property(property="status", type="integer", example=""),
+     *             @OA\Property(property="data",type="object")
+     *          )
+     *     )
+     * )
+     *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\OrderResource
      */
     public function store(Request $request)
     {
-        $order = Order::create($request->only([
-            'date', 'shipping_price', 'customer_id'
-        ]));
+        // $order = Order::create($request->only([
+        //     'date', 'shipping_price', 'customer_id'
+        // ]));
+
+        
+        $order = Order::create([
+            'date' => $request->date,
+            'shipping_price' => $request->shipping_price,
+            'customer_id' => $request->customer_id
+        ]);
 
         return new OrderResource($order);
     }
 
     /**
      * Display the specified resource.
-     *
+     * @OA\Get(
+    *     path="/api/order/{id}",
+    *     description="Gets an order by ID",
+    *     tags={"Order"},
+    *          @OA\Parameter(
+        *          name="id",
+        *          description="Order id",
+        *          required=true,
+        *          in="path",
+        *          @OA\Schema(
+        *              type="integer")
+     *          ),
+        *      @OA\Response(
+        *          response=200,
+        *          description="Successful operation"
+        *       ),
+        *      @OA\Response(
+        *          response=401,
+        *          description="Unauthenticated",
+        *      ),
+        *      @OA\Response(
+        *          response=403,
+        *          description="Forbidden"
+        *      )
+ * )
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
@@ -74,13 +129,34 @@ class OrderController extends Controller
     public function update(Request $request, Order $order)
     {
         $order->update($request->only([
-            'date', 'shipping_price'
+            'date', 'shipping_price', 'customer_id'
         ]));
 
         return new OrderResource($order);
     }
 
     /**
+     *
+     *
+     * @OA\Delete(
+     *    path="/api/order/{id}",
+     *    operationId="destroyOrder",
+     *    tags={"Order"},
+     *    summary="Delete an Order",
+     *    description="Delete Order",
+     *    @OA\Parameter(name="id", in="path", description="Id of an Order", required=true,
+     *        @OA\Schema(type="integer")
+     *    ),
+     *    @OA\Response(
+     *         response=Response::HTTP_NO_CONTENT,
+     *         description="Success",
+     *         @OA\JsonContent(
+     *         @OA\Property(property="status_code", type="integer", example="204"),
+     *         @OA\Property(property="data",type="object")
+     *          ),
+     *       )
+     *      )
+     *  )
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Order  $order
