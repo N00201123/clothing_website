@@ -18,6 +18,7 @@ class OrderResource extends JsonResource
             'id' => $this->id,
             'date' => $this->date,
             'shipping_price' => $this->shipping_price,
+            'customer_id' => $this->customer_id
         ];
     }
 }

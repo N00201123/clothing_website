@@ -47,7 +47,7 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $order = Order::create($request->only([
-            'date', 'shipping_price'
+            'date', 'shipping_price', 'customer_id'
         ]));
 
         return new OrderResource($order);
