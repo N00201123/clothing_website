@@ -55,7 +55,7 @@ class ProductController extends Controller
      *            @OA\Property(property="description", type="string", format="string", example="This is a T-Shirt"),
      *            @OA\Property(property="date", type="date", format="date", example="2023-01-01"),
      *            @OA\Property(property="price", type="float", format="float", example="49.49"),
-     *            @OA\Property(property="size", type="string", format="string", example="Large"),
+     *            @OA\Property(property="size", type="string", format="string", example="L"),
      *            @OA\Property(property="type", type="string", format="string", example="men"),
      *             @OA\Property(property="image", type="string", format="string", example="T-Shirt")
      *          )
@@ -118,6 +118,37 @@ class ProductController extends Controller
 
     /**
      * Update the specified resource in storage.
+     *
+     * @OA\Put(
+     *      path="/api/product/{id}",
+     *      operationId="update",
+     *      tags={"Product"},
+     *      summary="Update a Product",
+     *      description="Updates the product in the DB",
+     *      @OA\Parameter(name="id", in="path", description="Id of a Product", required=true,
+     *      @OA\Schema(type="integer")
+     *    ),
+     *      @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *            required={"title", "description", "date", "price", "size", "type", "image"},
+     *            @OA\Property(property="title", type="string", format="string", example="Sample Title"),
+     *            @OA\Property(property="description", type="string", format="string", example="A long description about this great produt"),
+     *            @OA\Property(property="date", type="date", format="date", example="2023-01-01"),
+     *            @OA\Property(property="price", type="float", format="float", example="9.99"),
+     *            @OA\Property(property="size", type="string", format="string", example="L"),
+     *            @OA\Property(property="type", type="string", format="string", example="men"),
+     *            @OA\Property(property="image", type="string", format="string", example="hi")
+     *          )
+     *      ),
+     *     @OA\Response(
+     *          response=200, description="Success",
+     *          @OA\JsonContent(
+     *             @OA\Property(property="status", type="integer", example=""),
+     *             @OA\Property(property="data",type="object")
+     *          )
+     *     )
+     * )
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Product  $product
