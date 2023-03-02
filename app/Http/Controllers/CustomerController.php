@@ -126,6 +126,35 @@ class CustomerController extends Controller
     /**
      * Update the specified resource in storage.
      *
+     * @OA\Put(
+     *      path="/api/customer/{id}",
+     *      operationId="updateCustomer",
+     *      tags={"Customer"},
+     *      summary="Update a Customer",
+     *      description="Updates the customer in the DB",
+     *      @OA\Parameter(name="id", in="path", description="Id of a Customer", required=true,
+     *      @OA\Schema(type="integer")
+     *    ),
+     *      @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *            required={"first_name", "last_name", "email", "phone", "address"},
+     *            @OA\Property(property="first_name", type="string", format="string", example="John"),
+     *            @OA\Property(property="last_name", type="string", format="string", example="Peterson"),
+     *            @OA\Property(property="email", type="string", format="string", example="johnp@gmail.com"),
+     *            @OA\Property(property="phone", type="integer", format="integer", example="0874132088"),
+     *            @OA\Property(property="address", type="string", format="string", example="185 Parley Road")            
+     *          )
+     *      ),
+     *     @OA\Response(
+     *          response=200, description="Success",
+     *          @OA\JsonContent(
+     *             @OA\Property(property="status", type="integer", example=""),
+     *             @OA\Property(property="data",type="object")
+     *          )
+     *     )
+     * )
+     *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response

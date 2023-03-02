@@ -201,6 +201,90 @@
                     }
                 }
             },
+            "put": {
+                "tags": [
+                    "Customer"
+                ],
+                "summary": "Update a Customer",
+                "description": "Updates the customer in the DB",
+                "operationId": "updateCustomer",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id of a Customer",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "first_name",
+                                    "last_name",
+                                    "email",
+                                    "phone",
+                                    "address"
+                                ],
+                                "properties": {
+                                    "first_name": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "John"
+                                    },
+                                    "last_name": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Peterson"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "johnp@gmail.com"
+                                    },
+                                    "phone": {
+                                        "type": "integer",
+                                        "format": "integer",
+                                        "example": "0874132088"
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "185 Parley Road"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": ""
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "delete": {
                 "tags": [
                     "Customer"
