@@ -42,7 +42,7 @@ class AuthController extends Controller
             ]);
 
             // check out the table personal_access_tokens to see the generated tokens
-            $token = $user->createToken('book-store-token')->plainTextToken;
+            $token = $user->createToken('product-store-token')->plainTextToken;
 
             // create the successful response including the token
             return response()->json(
