@@ -37,10 +37,14 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::apiResource('/order', OrderController::class)->except((['index', 'show']));
 });
 
-Route::apiResource('/product', ProductController::class);
+Route::get('/product', [ProductController::class, 'index']);
+Route::get('/product/{product}', [ProductController::class, 'show']);
 
-Route::apiResource('/category', CategoryController::class);
+Route::get('/category', [CategoryController::class, 'index']);
+Route::get('/category/{category}', [CategoryController::class, 'show']);
 
-Route::apiResource('customer', CustomerController::class);
+Route::get('customer', [CustomerController::class, 'index']);
+Route::get('/customer/{customer}', [CustomerController::class, 'show']);
 
-Route::apiResource('order', OrderController::class);
+Route::get('order', [OrderController::class, 'index']);
+Route::get('/order/{order}', [OrderController::class, 'show']);
