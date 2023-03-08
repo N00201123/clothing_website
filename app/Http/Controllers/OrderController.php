@@ -48,12 +48,14 @@ class OrderController extends Controller
      *      tags={"Order"},
      *      summary="Create a new Order",
      *      description="Stores the order in the DB",
+     *      security={{"bearerAuth":{}}},
      *      @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
-     *            required={"date", "shipping_price"},
+     *            required={"date", "shipping_price, customer_id"},
      *            @OA\Property(property="date", type="date", format="date", example="2023-01-01"),
-     *             @OA\Property(property="shipping_price", type="float", format="float", example="0.99")
+     *            @OA\Property(property="shipping_price", type="float", format="float", example="0.99"),
+     *            @OA\Property(property="customer_id", type="integer", format="integer", example="2")
      *          )
      *      ),
      *     @OA\Response(
@@ -144,6 +146,7 @@ class OrderController extends Controller
      *    tags={"Order"},
      *    summary="Delete an Order",
      *    description="Delete Order",
+     *    security={{"bearerAuth":{}}},
      *    @OA\Parameter(name="id", in="path", description="Id of an Order", required=true,
      *        @OA\Schema(type="integer")
      *    ),

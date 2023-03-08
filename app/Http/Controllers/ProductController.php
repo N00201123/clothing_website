@@ -7,6 +7,7 @@ use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Http\Requests\StoreProductRequest;
 
 class ProductController extends Controller
 {
@@ -47,6 +48,7 @@ class ProductController extends Controller
      *      tags={"Product"},
      *      summary="Create a new Product",
      *      description="Stores the product in the DB",
+     *      security={{"bearerAuth":{}}},
      *      @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
@@ -69,14 +71,26 @@ class ProductController extends Controller
      *     )
      * )
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\StoreProductRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-        $product = Product::create($request->only([
-            'title', 'description', 'date', 'price', 'size', 'type', 'image'
-        ]));
+        //$product = Product::create($request->only([
+        //     'title', 'description', 'date', 'price', 'size', 'type', 'image'
+        //]));
+
+        $product = Product::create([
+            'title' => $request->title, 
+            'description' => $request->description, 
+            'date' => $request->date,
+            'price' => $request->price,
+            'size' => $request->size,
+            'type' => $request->type,
+            'image' => $request->image,
+         ]);
+
+        $product->categories()->attach($request->categories);
         
         return new ProductResource($product);
     }
@@ -125,6 +139,7 @@ class ProductController extends Controller
      *      tags={"Product"},
      *      summary="Update a Product",
      *      description="Updates the product in the DB",
+     *      security={{"bearerAuth":{}}},
      *      @OA\Parameter(name="id", in="path", description="Id of a Product", required=true,
      *      @OA\Schema(type="integer")
      *    ),
@@ -172,6 +187,7 @@ class ProductController extends Controller
      *    tags={"Product"},
      *    summary="Delete a Product",
      *    description="Delete Product",
+     *    security={{"bearerAuth":{}}},
      *    @OA\Parameter(name="id", in="path", description="Id of a Product", required=true,
      *        @OA\Schema(type="integer")
      *    ),

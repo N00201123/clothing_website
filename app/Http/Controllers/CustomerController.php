@@ -69,7 +69,7 @@ class CustomerController extends Controller
      *     )
      * )
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\StoreCustomerRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreCustomerRequest $request)

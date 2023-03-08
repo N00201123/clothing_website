@@ -20,7 +20,7 @@ class OrderSeeder extends Seeder
 
         foreach(Order::all() as $orders)   {
             $products = Product::inRandomOrder()->take(rand(1,3))->pluck('id');
-            $orders->products()->attach($products);
+            $orders->products()->attach($products, ['price'=> rand(1, 150), 'quantity' => '1']);
         }
     }
 }

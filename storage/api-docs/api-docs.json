@@ -360,7 +360,7 @@
                             "schema": {
                                 "required": [
                                     "date",
-                                    "shipping_price"
+                                    "shipping_price, customer_id"
                                 ],
                                 "properties": {
                                     "date": {
@@ -372,6 +372,11 @@
                                         "type": "number",
                                         "format": "float",
                                         "example": "0.99"
+                                    },
+                                    "customer_id": {
+                                        "type": "integer",
+                                        "format": "integer",
+                                        "example": "2"
                                     }
                                 },
                                 "type": "object"
@@ -399,7 +404,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         },
         "/api/order/{id}": {
@@ -471,7 +481,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         },
         "/api/product": {
@@ -577,7 +592,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         },
         "/api/product/{id}": {
@@ -705,7 +725,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             },
             "delete": {
                 "tags": [
@@ -745,7 +770,23 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "name": "bearerAuth",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
             }
         }
     }
