@@ -49,6 +49,7 @@ class CustomerController extends Controller
      *      tags={"Customer"},
      *      summary="Create a new Customer",
      *      description="Stores the customer in the DB",
+     *      security={{"bearerAuth":{}}},
      *      @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
@@ -72,7 +73,7 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\StoreCustomerRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCustomerRequest $request)
+    public function store(Request $request)
     {
         //  $customer = Customer::create($request->only([
         //     'first_name', 'last_name', 'email', 'phone', 'address'
@@ -132,6 +133,7 @@ class CustomerController extends Controller
      *      tags={"Customer"},
      *      summary="Update a Customer",
      *      description="Updates the customer in the DB",
+     *      security={{"bearerAuth":{}}},
      *      @OA\Parameter(name="id", in="path", description="Id of a Customer", required=true,
      *      @OA\Schema(type="integer")
      *    ),
@@ -178,6 +180,7 @@ class CustomerController extends Controller
      *    tags={"Customer"},
      *    summary="Delete a Customer",
      *    description="Delete Customer",
+     *    security={{"bearerAuth":{}}},
      *    @OA\Parameter(name="id", in="path", description="Id of a Customer", required=true,
      *        @OA\Schema(type="integer")
      *    ),
@@ -199,6 +202,6 @@ class CustomerController extends Controller
     public function destroy(Customer $customer)
     {
         $customer->delete();
-        //return response()->json(null, Response::HTTP_NO_CONTENT);
+        return response()->json(null, Response::HTTP_NO_CONTENT);
     }
 }

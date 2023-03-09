@@ -33,7 +33,7 @@ Route::middleware('auth:sanctum')->group(function (){
 
     Route::apiResource('/product', ProductController::class)->except((['index', 'show']));
     Route::apiResource('/category', CategoryController::class)->except((['index', 'show']));
-    Route::apiResource('/customer', CustomerContoller::class)->except((['index', 'show']));
+    Route::apiResource('/customer', CustomerController::class)->except((['index', 'show']));
     Route::apiResource('/order', OrderController::class)->except((['index', 'show']));
 });
 
