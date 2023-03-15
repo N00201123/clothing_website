@@ -9,4 +9,14 @@ class Product extends Model
 {
     use HasFactory;
     protected $fillable = ['title', 'description', 'date', 'price', 'size', 'type', 'image'];
+
+    public function categories() 
+    {
+        return $this->belongsToMany(Category::class)->withTimestamps();
+    }
+
+    public function orders() 
+    {
+        return $this->belongsToMany(Product::class, 'order_product')->withPivot(['price','quantity'])->withTimestamps();
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Customer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,7 +19,8 @@ class OrderFactory extends Factory
     {
         return [
             'date'=> $this->faker->date,
-            'shipping_price' => $this->faker->numberBetween(0, 20)
+            'shipping_price' => $this->faker->numberBetween(0, 20),
+            'customer_id' => Customer::all()->random()->id,
         ];
     }
 }
