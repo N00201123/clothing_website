@@ -88,6 +88,7 @@ class ProductController extends Controller
             'size' => $request->size,
             'type' => $request->type,
             'image' => $request->image,
+            //'image' => $filename
          ]);
 
         $product->categories()->attach($request->categories);
