@@ -73,7 +73,7 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\StoreCustomerRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCustomerRequest $request)
     {
         //  $customer = Customer::create($request->only([
         //     'first_name', 'last_name', 'email', 'phone', 'address'
