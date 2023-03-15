@@ -27,3 +27,5 @@ Route::apiResource('/product', ProductController::class);
 Route::apiResource('/category', CategoryController::class);
 
 Route::apiResource('customer', CustomerController::class);
+
+Route::apiResource('order', OrderController::class);
