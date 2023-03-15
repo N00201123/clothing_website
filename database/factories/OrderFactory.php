@@ -17,7 +17,8 @@ class OrderFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'date'=> $this->faker->date,
+            'shipping_price' => $this->faker->numberBetween(0, 20)
         ];
     }
 }
