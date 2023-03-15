@@ -80,6 +80,13 @@ class ProductController extends Controller
         //     'title', 'description', 'date', 'price', 'size', 'type', 'image'
         //]));
 
+        $image = $request->file('image');
+        $extension = $image->getClientOriginalExtension();
+        $filename = date('Y-m-d-His') . '_' . $request->input('title') . '.'. $extension;
+
+        // store the file $book_image in /public/images, and name it $filename
+        $path = $image->storeAs('public/images', $filename);
+
         $product = Product::create([
             'title' => $request->title, 
             'description' => $request->description, 
@@ -87,12 +94,11 @@ class ProductController extends Controller
             'price' => $request->price,
             'size' => $request->size,
             'type' => $request->type,
-            'image' => $request->image,
-            //'image' => $filename
+            //'image' => $request->image,
+            'image' => $filename
          ]);
 
         $product->categories()->attach($request->categories);
-        
         return new ProductResource($product);
     }
 
@@ -172,9 +178,20 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
+        $image = $request->file('image');
+        $extension = $image->getClientOriginalExtension();
+
+        $filename = date('Y-m-d-His') . '_' . $request->input('title') . '_' . $extension;
+
+        $path = $image->storeAs('public/images', $filename);
+
         $product ->update($request->only([
-            'title', 'description', 'date', 'price', 'size', 'type', 'image'
+            'title', 'description', 'date', 'price', 'size', 'type'
         ]));
+
+        $product->update([
+            'image' => $filename]
+        );
         
         return new ProductResource($product);
     }
