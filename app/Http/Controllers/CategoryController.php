@@ -97,7 +97,11 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $category ->update($request->only([
+            'category_type'
+        ]));
+        
+        return new CategoryResource($category);
     }
 
     /**
