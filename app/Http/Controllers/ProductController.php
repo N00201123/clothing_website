@@ -152,17 +152,22 @@ class ProductController extends Controller
      *    ),
      *      @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(
-     *            required={"title", "description", "date", "price", "size", "type", "image"},
+     *         @OA\JsonContent(),
+     *         @OA\MediaType(
+     *            mediaType="multipart/form-data",
+     *            @OA\Schema(
+     *               type="object",
+     *               required={"title", "description", "date", "price", "size", "type", "image"},
      *            @OA\Property(property="title", type="string", format="string", example="Sample Title"),
      *            @OA\Property(property="description", type="string", format="string", example="A long description about this great produt"),
      *            @OA\Property(property="date", type="date", format="date", example="2023-01-01"),
      *            @OA\Property(property="price", type="float", format="float", example="9.99"),
      *            @OA\Property(property="size", type="string", format="string", example="L"),
      *            @OA\Property(property="type", type="string", format="string", example="men"),
-     *            @OA\Property(property="image", type="string", format="string", example="hi")
-     *          )
-     *      ),
+     *            @OA\Property(property="image", type="file", format="jpg", example="hi")
+     *            )
+     *         )
+     *         ),
      *     @OA\Response(
      *          response=200, description="Success",
      *          @OA\JsonContent(
@@ -181,7 +186,7 @@ class ProductController extends Controller
         $image = $request->file('image');
         $extension = $image->getClientOriginalExtension();
 
-        $filename = date('Y-m-d-His') . '_' . $request->input('title') . '_' . $extension;
+        $filename = date('Y-m-d-His') . '_' . $request->input('title') . '.' . $extension;
 
         $path = $image->storeAs('public/images', $filename);
 

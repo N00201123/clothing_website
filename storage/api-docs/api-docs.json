@@ -667,7 +667,7 @@
                 "requestBody": {
                     "required": true,
                     "content": {
-                        "application/json": {
+                        "multipart/form-data": {
                             "schema": {
                                 "required": [
                                     "title",
@@ -710,13 +710,16 @@
                                         "example": "men"
                                     },
                                     "image": {
-                                        "type": "string",
-                                        "format": "string",
+                                        "type": "file",
+                                        "format": "jpg",
                                         "example": "hi"
                                     }
                                 },
                                 "type": "object"
                             }
+                        },
+                        "application/json": {
+                            "schema": {}
                         }
                     }
                 },
