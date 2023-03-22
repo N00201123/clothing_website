@@ -163,12 +163,12 @@ class CustomerController extends Controller
      */
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
-        // $customer ->update($request->only([
-        //     'first_name', 'last_name', 'email', 'phone', 'address'
-        // ]));
+        $customer ->update($request->only([
+            'first_name', 'last_name', 'email', 'phone', 'address'
+        ]));
         
-        // return new CustomerResource($customer);
-        $customer->update($request->all());
+        return new CustomerResource($customer);
+        //$customer->update($request->all());
     }
 
     /**
