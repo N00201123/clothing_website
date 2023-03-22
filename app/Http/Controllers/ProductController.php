@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Requests\StoreProductRequest;
 
+use Illuminate\Support\Facades\Storage;
+
+
 class ProductController extends Controller
 {
     /**
@@ -85,7 +88,11 @@ class ProductController extends Controller
         $filename = date('Y-m-d-His') . '_' . $request->input('title') . '.'. $extension;
 
         // store the file $book_image in /public/images, and name it $filename
-        $path = $image->storeAs('public/images', $filename);
+
+        // $path = $image->storeAs('images', $filename, 's3');
+        $filename = Storage::put('products', $image);
+
+
 
         $product = Product::create([
             'title' => $request->title, 

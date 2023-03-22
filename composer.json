@@ -7,11 +7,12 @@
     "require": {
         "php": "^8.0.2",
         "darkaonline/l5-swagger": "^8.5",
+        "fakerphp/faker": "^1.9.1",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
-        "fakerphp/faker": "^1.9.1"
+        "league/flysystem-aws-s3-v3": "^3.0"
     },
     "require-dev": {
         "laravel/breeze": "^1.19",
