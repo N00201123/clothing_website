@@ -190,7 +190,9 @@ class ProductController extends Controller
 
         $filename = date('Y-m-d-His') . '_' . $request->input('title') . '_' . $extension;
 
-        $path = $image->storeAs('public/images', $filename);
+        //$path = $image->storeAs('public/images', $filename);
+
+        $filename = Storage::put('products', $image);
 
         $product ->update($request->only([
             'title', 'description', 'date', 'price', 'size', 'type'
