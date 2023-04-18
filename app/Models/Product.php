@@ -10,7 +10,7 @@ class Product extends Model
     use HasFactory;
     protected $fillable = ['title', 'description', 'date', 'price', 'size', 'type', 'image'];
 
-    public function categories() 
+    public function categorys() 
     {
         return $this->belongsToMany(Category::class)->withTimestamps();
     }

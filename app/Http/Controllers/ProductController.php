@@ -40,7 +40,7 @@ class ProductController extends Controller
     public function index()
     {
         return new ProductCollection(Product::all()
-        ->with('categories')
+        ->with('categorys')
         ->get());
     }
 
@@ -107,7 +107,7 @@ class ProductController extends Controller
             'image' => $filename
          ]);
 
-        $product->categories()->attach($request->categories);
+        $product->categorys()->attach($request->categorys);
         return new ProductResource($product);
     }
 
