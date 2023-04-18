@@ -14,7 +14,7 @@ class ProductResource extends JsonResource
      */
     public function toArray($request)
     {
-        $categorys = array();
+        $categories = array();
         foreach ($this->categories as $category) {
         echo $category->category_type;
             array_push($categories, $category->category_type);

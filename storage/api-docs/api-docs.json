@@ -19,11 +19,11 @@
                     "Category"
                 ],
                 "summary": "Display a listing of the resource.",
-                "description": "Displays all the categorys",
+                "description": "Displays all the categories",
                 "operationId": "327644f4d836240fa297b2822ab6ca92",
                 "responses": {
                     "200": {
-                        "description": "Successful operation, Returns a list of categorys in JSON format"
+                        "description": "Successful operation, Returns a list of Categories in JSON format"
                     },
                     "401": {
                         "description": "Unauthenticated"
