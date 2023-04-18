@@ -35,7 +35,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return new CategoryCollection(Category::all());
+        return new CategoryCollection(Category::all()
+        ->with('products')
+        ->get());
+        
     }
 
     /**

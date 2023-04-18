@@ -15,9 +15,9 @@ class ProductResource extends JsonResource
     public function toArray($request)
     {
         $categorys = array();
-        foreach ($this->categorys as $category) {
+        foreach ($this->categories as $category) {
         echo $category->category_type;
-            array_push($categorys, $category->category_type);
+            array_push($categories, $category->category_type);
         }
         
         return [
@@ -29,7 +29,7 @@ class ProductResource extends JsonResource
             'size' => $this -> size,
             'type' => $this -> type,
             'image' => $this -> image,
-            'categorys' => $categorys
+            'categories' => $categories
         ];
     }
 }
