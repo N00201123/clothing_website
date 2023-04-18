@@ -14,11 +14,11 @@ class ProductResource extends JsonResource
      */
     public function toArray($request)
     {
-        // $categories = array();
-        // foreach ($this->categories as $category) {
-        // echo $category->category_type;
-        //     array_push($categories, $category->category_type);
-        // }
+        $categories = array();
+        foreach ($this->categories as $category) {
+        echo $category->category_type;
+            array_push($categories, $category->category_type);
+        }
         
         return [
             'id' => $this->id,
@@ -29,7 +29,7 @@ class ProductResource extends JsonResource
             'size' => $this -> size,
             'type' => $this -> type,
             'image' => $this -> image,
-            //'categories' => $categories
+            'categories' => $categories
         ];
     }
 }

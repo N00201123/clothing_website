@@ -40,8 +40,6 @@ class ProductController extends Controller
     public function index()
     {
         return new ProductCollection(Product::all());
-        // ->with('categories')
-        // ->get());
     }
 
     /**
