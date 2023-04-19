@@ -105,7 +105,7 @@ class ProductController extends Controller
             'image' => $filename
          ]);
 
-        $product->categorys()->attach($request->categorys);
+        $product->categories()->attach($request->categories);
         return new ProductResource($product);
     }
 

@@ -15,11 +15,11 @@ class CategoryController extends Controller
      * 
     * @OA\Get(
     *     path="/api/category",
-    *     description="Displays all the categorys",
+    *     description="Displays all the categories",
     *     tags={"Category"},
      *      @OA\Response(
         *          response=200,
-        *          description="Successful operation, Returns a list of categorys in JSON format"
+        *          description="Successful operation, Returns a list of categories in JSON format"
         *       ),
         *      @OA\Response(
         *          response=401,
