@@ -16,8 +16,8 @@ class CategoryResource extends JsonResource
     {
         $products = array();
         foreach ($this->products as $product) {
-        echo $product->type;
-            array_push($products, $product->type);
+        echo $product->title;
+            array_push($products, $product->title);
         }
         return[
             'id' => $this-> id,
