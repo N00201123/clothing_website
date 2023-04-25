@@ -22,8 +22,8 @@ class ProductResource extends JsonResource
 
         $orders = array();
         foreach ($this->orders as $order) {
-            echo $order->customer_id;
-            array_push($orders, $order->customer_id);
+            echo $order->shipping_price;
+            array_push($orders, $order->shipping_price);
         }
         
         return [
