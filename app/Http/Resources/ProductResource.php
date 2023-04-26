@@ -20,11 +20,11 @@ class ProductResource extends JsonResource
             array_push($categories, $category->category_type);
         }
 
-        $orders = array();
-        foreach ($this->orders as $order) {
-            echo $order->date;
-            array_push($orders, $order->date);
-        }
+        //$orders = array();
+        //foreach ($this->orders as $order) {
+         //   echo $order->date;
+         //   array_push($orders, $order->date);
+        //}
         
         return [
             'id' => $this->id,
@@ -36,7 +36,7 @@ class ProductResource extends JsonResource
             'type' => $this -> type,
             'image' => $this -> image,
             'categories' => $categories,
-            'orders' => $orders
+            //'orders' => $orders
         ];
     }
 }
