@@ -83,6 +83,7 @@ class OrderController extends Controller
             'customer_id' => $request->customer_id
         ]);
 
+        $order->products()->attach($request->products);
         return new OrderResource($order);
     }
 

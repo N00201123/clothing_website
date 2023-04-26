@@ -8,7 +8,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Requests\StoreProductRequest;
-
+use App\Models\Order;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -185,6 +185,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
+
         $image = $request->file('image');
         $extension = $image->getClientOriginalExtension();
 
@@ -201,7 +202,8 @@ class ProductController extends Controller
         $product->update([
             'image' => $filename]
         );
-        
+        $product->categories()->attach($request->categories);
+       // $product->orders()->attach($request->orders);
         return new ProductResource($product);
     }
 
@@ -235,6 +237,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+       $product->categories()->detach();
+       $product->orders()->detach();
         $product->delete();
         return response()->json(null, Response::HTTP_NO_CONTENT);
     }
